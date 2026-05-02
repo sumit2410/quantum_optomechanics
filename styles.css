@@ -118,37 +118,47 @@ nav a:hover::after, nav a.current::after { transform: scaleX(1); }
 
 /* ── HERO ── */
 .hero {
-  padding: 6rem 4rem 4rem;
+  padding: 0.5rem 4rem 4rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, 600px);
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 620px);
   gap: 5rem;
-  align-items: center;
+  align-items: start;
 }
-.hero-text { max-width: 640px; }
+.hero-text {
+  max-width: 640px;
+  padding-top: 5rem; /* breathing room from header so text isn't cramped */
+}
 .hero-image {
   position: relative;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  /* gentle, slow vertical bob — suggests the cryostat hanging in its tube */
+  animation: cryostat-float 8s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes cryostat-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
 }
 .hero-image img {
   width: 100%;
   height: auto;
-  max-height: 90vh;
+  max-height: 95vh;
   object-fit: contain;
   display: block;
   filter: drop-shadow(0 0 60px rgba(201,168,76,0.1));
-  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
-              filter 0.7s ease-out;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+              filter 0.8s ease-out;
   transform-origin: center;
   will-change: transform, filter;
 }
 .hero-image:hover img {
-  transform: translateY(-10px) scale(1.04);
-  filter: drop-shadow(0 0 110px rgba(201,168,76,0.28))
-          drop-shadow(0 0 40px rgba(240,165,0,0.18))
-          brightness(1.06);
+  transform: scale(1.07);
+  filter: drop-shadow(0 0 140px rgba(201,168,76,0.35))
+          drop-shadow(0 0 50px rgba(240,165,0,0.22))
+          brightness(1.10) contrast(1.04);
 }
 .hero-image figcaption {
   margin-top: 1.4rem;
@@ -161,19 +171,24 @@ nav a:hover::after, nav a.current::after { transform: scaleX(1); }
   color: var(--dim);
   line-height: 1.65;
   text-align: right;
-  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+              opacity 0.4s ease-out;
 }
-.hero-image:hover figcaption { transform: translateY(-4px); }
+.hero-image:hover figcaption {
+  transform: translateY(-6px);
+  opacity: 1;
+}
 .hero-image figcaption .caption-line { color: var(--gold); }
 .hero-image figcaption .lab {
   color: var(--gold);
   border-bottom: 1px solid var(--gold-dim);
   padding-bottom: 1px;
-  transition: color 0.3s, border-color 0.3s;
+  transition: color 0.3s, border-color 0.3s, letter-spacing 0.3s;
 }
 .hero-image:hover figcaption .lab {
   color: var(--amber);
   border-color: var(--amber);
+  letter-spacing: 0.22em;
 }
 .hero-label {
   font-family: 'Share Tech Mono', monospace;
@@ -973,11 +988,12 @@ footer a:hover { color: var(--amber) !important; border-color: var(--gold); }
 @media (max-width: 900px) {
   header { padding: 2rem; flex-direction: column; gap: 1.5rem; }
   .hero {
-    padding: 4rem 2rem 3rem;
+    padding: 1rem 2rem 3rem;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
   }
-  .hero-image img { max-height: 65vh; margin: 0 auto; }
+  .hero-text { padding-top: 2rem; }
+  .hero-image img { max-height: 70vh; margin: 0 auto; }
   .hero-image figcaption { text-align: left; }
   .reading-hero { padding: 4rem 2rem 2rem; }
   .reading-content { padding: 3rem 2rem; }
