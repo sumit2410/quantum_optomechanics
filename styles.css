@@ -120,7 +120,7 @@ nav a:hover::after, nav a.current::after { transform: scaleX(1); }
 .hero {
   padding: 6rem 4rem 4rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 460px);
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 600px);
   gap: 5rem;
   align-items: center;
 }
@@ -135,25 +135,46 @@ nav a:hover::after, nav a.current::after { transform: scaleX(1); }
 .hero-image img {
   width: 100%;
   height: auto;
-  max-height: 80vh;
+  max-height: 90vh;
   object-fit: contain;
   display: block;
   filter: drop-shadow(0 0 60px rgba(201,168,76,0.1));
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+              filter 0.7s ease-out;
+  transform-origin: center;
+  will-change: transform, filter;
+}
+.hero-image:hover img {
+  transform: translateY(-10px) scale(1.04);
+  filter: drop-shadow(0 0 110px rgba(201,168,76,0.28))
+          drop-shadow(0 0 40px rgba(240,165,0,0.18))
+          brightness(1.06);
 }
 .hero-image figcaption {
   margin-top: 1.4rem;
   display: flex; flex-direction: column;
   gap: 0.5rem;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--dim);
   line-height: 1.65;
   text-align: right;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+.hero-image:hover figcaption { transform: translateY(-4px); }
 .hero-image figcaption .caption-line { color: var(--gold); }
-.hero-image figcaption .lab { color: var(--text); }
+.hero-image figcaption .lab {
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold-dim);
+  padding-bottom: 1px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.hero-image:hover figcaption .lab {
+  color: var(--amber);
+  border-color: var(--amber);
+}
 .hero-label {
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.68rem;
