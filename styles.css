@@ -118,9 +118,42 @@ nav a:hover::after, nav a.current::after { transform: scaleX(1); }
 
 /* ── HERO ── */
 .hero {
-  padding: 7rem 4rem 5rem;
-  max-width: 920px;
+  padding: 6rem 4rem 4rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 460px);
+  gap: 5rem;
+  align-items: center;
 }
+.hero-text { max-width: 640px; }
+.hero-image {
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.hero-image img {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 60px rgba(201,168,76,0.1));
+}
+.hero-image figcaption {
+  margin-top: 1.4rem;
+  display: flex; flex-direction: column;
+  gap: 0.5rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+  line-height: 1.65;
+  text-align: right;
+}
+.hero-image figcaption .caption-line { color: var(--gold); }
+.hero-image figcaption .lab { color: var(--text); }
 .hero-label {
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.68rem;
@@ -918,7 +951,13 @@ footer a:hover { color: var(--amber) !important; border-color: var(--gold); }
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   header { padding: 2rem; flex-direction: column; gap: 1.5rem; }
-  .hero { padding: 4rem 2rem 3rem; }
+  .hero {
+    padding: 4rem 2rem 3rem;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .hero-image img { max-height: 65vh; margin: 0 auto; }
+  .hero-image figcaption { text-align: left; }
   .reading-hero { padding: 4rem 2rem 2rem; }
   .reading-content { padding: 3rem 2rem; }
   .status-bar { margin: 2rem; flex-wrap: wrap; gap: 1.5rem; }
